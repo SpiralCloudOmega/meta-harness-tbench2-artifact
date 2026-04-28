@@ -1151,27 +1151,50 @@ EnvironmentType = Literal[
 
 `awesome-autoresearch` is a curated index — not executable code — of autonomous improvement loops, research agents, and descendants inspired by Karpathy's `autoresearch`. It serves as a **reference taxonomy** and **discovery layer** for the ecosystem.
 
-### 7.2 Key Categories
+### 7.2 Actual README Categories (from https://github.com/SpiralCloudOmega/awesome-autoresearch)
 
-The README organises projects into:
+The README is organised into seven sections:
 
-1. **Autoresearch Descendants** — Direct forks/implementations of Karpathy's pattern (self-referential research loops)
-2. **Self-Improvement Agents** — Systems that evolve their own capabilities (Memento-Skills falls here)
-3. **Research Automation** — Full literature review/synthesis pipelines
-4. **Multi-Agent Research** — Collaborative agent networks for research
-5. **Tool-Augmented Reasoning** — RAG + tools for research tasks
-6. **Benchmark Agents** — Systems evaluated on GAIA, HLE, SWE-Bench, etc.
-7. **Memory-Augmented Research** — Systems with persistent knowledge stores (mempalace falls here)
-8. **Code Research Agents** — Codebase understanding agents (GitNexus falls here)
-9. **Knowledge Compilation** — Source-to-structured-knowledge pipelines (llm-wiki-compiler falls here)
-10. **Long-Context Processing** — Recursive decomposition approaches (lambda-RLM falls here)
+1. **🛠️ General-purpose descendants** — Claude Code skills, Gemini CLI skills, `pi` extensions, closed-loop control planes, and GOAL.md patterns that generalise the autoresearch loop to any measurable goal. Notable: `uditgoenka/autoresearch` (Claude Code skill), `leo-lilinxiao/codex-autoresearch` (Codex-native with resume support), `supratikpm/gemini-autoresearch` (1M context + Google Search grounding), `greyhaven-ai/autocontext` (staged validation + distillation).
 
-### 7.3 Relevance to the Ecosystem
+2. **🔬 Research-agent systems** — Autonomous systems for scientific research, hypothesis generation, and experiment loops. Includes multi-agent swarm coordination (`mutable-state-inc/autoresearch-at-home`).
+
+3. **💻 Platform ports and hardware forks** — Colab/Kaggle T4 port for free GPU autoresearch. Adapts the loop for zero-cost local execution.
+
+4. **🎯 Domain-specific adaptations** — Autoresearch loops applied to specific domains (biomechanics, tennis prediction, Shopify Liquid optimization, earth system models).
+
+5. **📊 Evaluation & benchmarks** — Frameworks for measuring autoresearch loop quality and convergence.
+
+6. **📈 Notable use cases and writeups** — Real-world case studies: Shopify Liquid optimisation (Tobi Lütke), Driveline baseball biomechanics, Vesuvius Challenge ink detection, H100/H200 cluster runs via SkyPilot, self-improving coding agents (Addy Osmani / Claude Code + AutoResearch), "100 ML Experiments Overnight", PM's Guide to Autoresearch.
+
+7. **📚 Related resources** — Papers, blog posts, guides.
+
+### 7.3 Key Architectural Pattern from the List
+
+The dominant pattern across all entries is:
+
+```
+GOAL.md / fitness function definition
+    → experiment loop (propose → execute → score → mutate)
+    → persistent lessons/best-config across runs
+    → optional: shared swarm coordination, distillation into cheaper models
+```
+
+This is the **autoresearch loop**, and it is the meta-pattern that ties all 6 repos together. The Super 3D Node Graph Recursive GitNexus should implement this loop with:
+- **GitNexus** as the code-understanding substrate
+- **lambda-RLM** as the long-context recursive decomposer
+- **mempalace** as the persistent lessons/memory store
+- **Memento-Skills** as the skill-evolution executor
+- **llm-wiki-compiler** as the knowledge compilation step
+- **3D graph UI** as the visualisation layer for the loop state
+
+### 7.4 Relevance to the Ecosystem
 
 This repo serves as the **theoretical framework** and **external validation** for the other five repos:
-- Confirms Memento-Skills' Read-Reflect-Write loop is a recognised paradigm
+- Confirms Memento-Skills' Read-Reflect-Write loop is a recognised paradigm (many General-purpose descendants implement exactly this)
 - Validates the niche of each tool in the autonomous AI landscape
-- Provides integration inspiration from community work (e.g., combining RAG with self-improvement)
+- Provides integration inspiration: `greyhaven-ai/autocontext` shows staged validation + distillation; `autoresearch-at-home` shows swarm coordination; `codex-autoresearch` shows resume support and cross-run lessons
+- The `GOAL.md` pattern maps directly to the system's WikiPage + fitness function concept
 
 ---
 
