@@ -36,3 +36,8 @@ app.include_router(autoresearch_router, prefix="/api")
 @app.get("/")
 async def root():
     return {"message": "Super 3D Node Graph Recursive GitNexus API", "status": "ok"}
+
+
+@app.get("/health")
+async def health():
+    return {"status": "ok", "service": "Super 3D Node Graph Recursive GitNexus"}

@@ -7,6 +7,12 @@ router = APIRouter(prefix="/graph", tags=["graph"])
 engine = GraphEngine()
 
 
+@router.get("/repos")
+async def list_repos():
+    from core.graph_engine import REPO_NODES
+    return list(REPO_NODES.keys())
+
+
 @router.post("/index")
 async def index_repo(req: IndexRequest):
     return await engine.index_repo(req.repo_path)
