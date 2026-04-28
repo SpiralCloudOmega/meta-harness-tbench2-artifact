@@ -1,4 +1,11 @@
-FROM python:3.11-slim
+# NVIDIA CUDA base for GPU-accelerated embeddings (RTX 3090)
+FROM nvidia/cuda:12.3.1-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y python3.11 python3.11-dev python3-pip nodejs npm curl && \
+    ln -sf /usr/bin/python3.11 /usr/bin/python3 && \
+    ln -sf /usr/bin/python3.11 /usr/bin/python && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -12,4 +19,5 @@ WORKDIR /app/backend
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# 16 workers for Ryzen 9 5950X (32 threads); 2 per core is optimal for async I/O workloads
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "16", "--loop", "uvloop", "--http", "httptools"]
