@@ -10,6 +10,7 @@ interface AppState {
   memories: MemoryItem[];
   skills: Skill[];
   wikiPages: WikiPage[];
+  searchFilter: string;
   setSelectedRepo: (repo: string) => void;
   setSelectedNode: (node: GraphNode | null) => void;
   setGraphData: (data: GraphData | null) => void;
@@ -18,6 +19,7 @@ interface AppState {
   setMemories: (memories: MemoryItem[]) => void;
   setSkills: (skills: Skill[]) => void;
   setWikiPages: (pages: WikiPage[]) => void;
+  setSearchFilter: (filter: string) => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -29,6 +31,7 @@ export const useStore = create<AppState>((set) => ({
   memories: [],
   skills: [],
   wikiPages: [],
+  searchFilter: '',
   setSelectedRepo: (repo) => set({ selectedRepo: repo }),
   setSelectedNode: (node) => set({ selectedNode: node }),
   setGraphData: (data) => set({ graphData: data }),
@@ -37,4 +40,5 @@ export const useStore = create<AppState>((set) => ({
   setMemories: (memories) => set({ memories }),
   setSkills: (skills) => set({ skills }),
   setWikiPages: (pages) => set({ wikiPages: pages }),
+  setSearchFilter: (filter) => set({ searchFilter: filter }),
 }));
