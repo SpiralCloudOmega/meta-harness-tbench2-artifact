@@ -51,6 +51,19 @@ async def get_impact(repo: str, req: ImpactRequest):
     return await engine.get_impact(repo, req.node_id)
 
 
+@router.get("/{repo}/children/{node_id}")
+async def get_children(repo: str, node_id: str):
+    """Drill-down: expand a Community/Folder/Cluster node into its children."""
+    children = await engine.get_children(repo, node_id)
+    return [n.model_dump() for n in children]
+
+
+@router.get("/{repo}/recursive_mode")
+async def get_recursive_mode(repo: str):
+    """GitNexus Recursive Mode: meta-graph of the KuzuDB schema represented as a node graph."""
+    return await engine.get_recursive_mode(repo)
+
+
 @router.websocket("/ws/graph/{repo}")
 async def ws_graph(websocket: WebSocket, repo: str):
     await websocket.accept()

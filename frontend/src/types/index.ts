@@ -1,5 +1,5 @@
-export type NodeType = "Function" | "Class" | "File" | "Cluster" | "Process";
-export type EdgeType = "CALLS" | "IMPORTS" | "MEMBER_OF";
+export type NodeType = "Function" | "Class" | "File" | "Folder" | "Community" | "Cluster" | "Process" | "Interface" | "Method";
+export type EdgeType = "CALLS" | "IMPORTS" | "MEMBER_OF" | "CONTAINS" | "DEFINES" | "EXTENDS" | "IMPLEMENTS" | "STEP_IN_PROCESS";
 
 export interface GraphNode {
   id: string;
