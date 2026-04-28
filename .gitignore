@@ -1,0 +1,8 @@
+frontend/node_modules/
+frontend/dist/
+.mempalace_data/
+.wiki_data/
+__pycache__/
+*.pyc
+*.pyc
+**/__pycache__/
